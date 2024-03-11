@@ -5,6 +5,10 @@ Building Chart for point and cluster in Openlayers.
 
 ![image](https://github.com/kossyak/olStyleChart/assets/68551616/8dc72b5f-a597-49bc-947c-31b3b1ee2b10)
 
+```
+copy file ./chart.js to your project
+```
+
 ```js
 import chart from './chart.js'
 // ...
