@@ -2,7 +2,7 @@
 
 Building Chart for point and cluster in Openlayers.
 
-[DEMO](olStyleChart)
+[DEMO](https://kossyak.github.io/olStyleChart/)
 
 ```js
 import chart from './chart.js'
