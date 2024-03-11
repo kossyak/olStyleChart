@@ -1,0 +1,6 @@
+.parcel-cache/
+.idea/
+node_modules/
+dist/
+secret.js
+*.log

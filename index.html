@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v9.0.0/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v9.0.0/ol.css">
+    <title>Clustered Features</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .map {
+        width: 100%;
+        height: 100vh;
+      }
+    </style>
+</head>
+<body>
+    <div id="map" class="map"></div>
+    <script type="module">
+      import chart from './chart.js'
+
+      const count = 2000
+      const features = new Array(count)
+      const e = 4500000
+      for (let i = 0; i < count; ++i) {
+        const coordinates = [2 * e * Math.random() - e, 2 * e * Math.random() - e]
+        features[i] = new ol.Feature(new ol.geom.Point(coordinates))
+      }
+
+      const clusters = new ol.layer.Vector({
+        source: new ol.source.Cluster({
+          source: new ol.source.Vector({ features })
+        }),
+        style: (feature) => {
+          return new ol.style.Style({
+            image: new ol.style.Icon({
+              img: chart.create({
+                values: [10, 14, 3, 12, 8],
+                colors: ['#00a64c', '#fcb900', '#ae328e', '#f50800', '#2962ff'],
+                hole: 0.7,
+                radius: 15,
+                stroke: 0.5
+              })
+            }),
+            text: new ol.style.Text({
+              text: (feature.get('features')).length.toString(),
+              fill: new ol.style.Fill({
+                color: '#000'
+              })
+            })
+          })
+        }
+      })
+
+      const raster = new ol.layer.Tile({
+        source: new ol.source.OSM()
+      })
+
+      const map = new ol.Map({
+        layers: [raster, clusters],
+        target: 'map',
+        view: new ol.View({
+          center: [0, 0],
+          zoom: 2
+        })
+      })
+    </script>
+</body>
+</html>
