@@ -22,6 +22,6 @@ style: (feature) => {
   })
 }
 ```
-Full example in a file ./index.html
+Full example in a file [index.html](https://github.com/kossyak/olStyleChart/blob/main/index.html)
 
 [Clustered Features Example](https://openlayers.org/en/latest/examples/cluster.html)
